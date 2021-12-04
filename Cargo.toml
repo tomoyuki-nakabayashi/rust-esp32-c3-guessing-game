@@ -1,0 +1,24 @@
+[package]
+name = "rust-esp32-c3-guessing-game"
+version = "0.1.0"
+edition = "2021"
+
+[patch.crates-io]
+rand = { version = "0.8", git = "https://github.com/tomoyuki-nakabayashi/rand.git", branch = "0.8.4-espidf" }
+getrandom = { version = "0.2", git = "https://github.com/esp-rs-compat/getrandom.git" }
+
+[profile.release]
+debug = true # Symbols are nice and they don't increase the size on Flash
+opt-level = "z"
+
+[profile.dev]
+opt-level = "s"
+
+[dependencies]
+esp-idf-sys = { version = "0.27.0", features = ["binstart"] }
+num = "0.3"
+rand = "0.8.4"
+
+[build-dependencies]
+embuild = "0.25"
+anyhow = "1"

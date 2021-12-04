@@ -1,0 +1,7 @@
+# Necessary for the LED screen demos
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=7000
+
+# Workaround for https://github.com/espressif/esp-idf/issues/7631
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE=n
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE_DEFAULT_FULL=n
+
