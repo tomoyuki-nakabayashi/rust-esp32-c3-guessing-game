@@ -2,7 +2,7 @@
 
 Run Guessing Game in The Rust Programming Language on ESP32-C3 with Rust std library based on [rust-esp32-std-demo](https://github.com/ivmarkov/rust-esp32-std-demo).
 
-## How to build & run
+## How to build and run
 
 ### build
 
@@ -20,38 +20,34 @@ bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 Install related tools:
 
-```
+```console
 cargo install ldproxy
 cargo install espflash
 ```
 
-Get Rust source:
+Build with nightly toolchain. Note that this repository contains `rust-toolchain.toml`
+file so `rustup` will automatically install a specific version of nightly toolchain
+with rust-src component.
 
-```
-rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
-```
-
-Build with nightly toolchain:
-
-```
-rustup install nightly
-
+```console
 git clone https://github.com/tomoyuki-nakabayashi/rust-esp32-c3-guessing-game.git
-cd rust-esp32-c3-guessing-game.git
-rustup override add nightly
+cd rust-esp32-c3-guessing-game
+
+# Build it. This will also install a nightly toolchain with rust-src component:
+cargo build
 ```
 
 ### run
 
 Flash (`ttyACM0` depends on your environment or target board):
 
-```
+```console
 espflash /dev/ttyACM0 target/riscv32imc-esp-espidf/debug/rust-esp32-c3-guessing-game
 ```
 
-Use ESP-IDF bandled monitor tool:
+Use ESP-IDF bundled monitor tool:
 
-```
+```console
 # at some ESP-IDF project
 idf.py monitor
 ```
