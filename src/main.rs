@@ -10,19 +10,8 @@ extern "C" {
     ) -> ();
 }
 
-fn patches() {
-    esp_idf_sys::link_patches();
-
-    esp_idf_sys::esp!(unsafe {
-        esp_idf_sys::uart_driver_install(esp_idf_sys::CONFIG_ESP_CONSOLE_UART_NUM.try_into().unwrap(), 256, 0, 0, std::ptr::null_mut(), 0)
-    }).unwrap();
-    unsafe {
-        esp_vfs_dev_uart_use_driver(esp_idf_sys::CONFIG_ESP_CONSOLE_UART_NUM.try_into().unwrap())
-    };
-}
-
 fn main() {
-    patches();
+    esp_idf_sys::link_patches();
 
     println!("Guess the number!");
 
